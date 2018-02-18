@@ -1,3 +1,5 @@
+# intellij idea files
 .idea/
 
+# compiled
 target/**
