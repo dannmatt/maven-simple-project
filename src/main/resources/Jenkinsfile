@@ -25,6 +25,7 @@ node {
             //archive "target/**/*"
             archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
             junit 'target/surefire-reports/*.xml'
+            echo 'Hello from staging branch'
         }
     }
 }
