@@ -34,7 +34,7 @@ pipeline {
     post {
         always {
             //archive "target/**/*"
-            echo server: ${params.server}'
+            echo 'server: ${params.server}'
             echo 'userEnv: ${params.userEnv}'
             archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             junit 'target/surefire-reports/*.xml'
