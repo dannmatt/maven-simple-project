@@ -39,7 +39,7 @@ public class AppTest
     /**
      * Another Rigorous Test
      */
-    public void testAppFalse()
+    public void testAppFalsee()
     {
         assertFalse( false );
     }
