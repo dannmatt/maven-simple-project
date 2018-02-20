@@ -27,9 +27,9 @@ pipeline {
             }
         }
 
-        stage('Deliver for development') {
+        stage('Deliver for staging') {
             when {
-                branch 'development'
+                branch 'staging'
             }
             steps {
                 //sh './jenkins/scripts/deliver-for-development.sh'
@@ -40,7 +40,7 @@ pipeline {
 
         stage('Deploy for production') {
             when {
-                branch 'production'
+                branch 'master'
             }
             steps {
                 //sh './jenkins/scripts/deploy-for-production.sh'
