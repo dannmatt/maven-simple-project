@@ -1,14 +1,9 @@
 pipeline {
+
     agent any
 
     environment {
         mvnHome = tool 'mvn3.5.2'
-    }
-
-    parameters {
-        string(defaultValue: "TEST", description: 'What environment?', name: 'userEnv')
-        // choices are newline separated
-        choice(choices: 'server_A\nserver_B', description: 'What Server?', name: 'server')
     }
 
     stages {
@@ -18,6 +13,7 @@ pipeline {
                 git 'https://github.com/dannmatt/maven-simple-project.git'
             }
         }
+
         stage('Build') {
             steps {
                 script {
@@ -30,12 +26,33 @@ pipeline {
                 }
             }
         }
+
+        stage('Deliver for staging') {
+            when {
+                branch 'staging'
+            }
+            steps {
+                //sh './jenkins/scripts/deliver-for-development.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                //sh './jenkins/scripts/kill.sh'
+            }
+        }
+
+        stage('Deploy for production') {
+            when {
+                branch 'master'
+            }
+            steps {
+                //sh './jenkins/scripts/deploy-for-production.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                //sh './jenkins/scripts/kill.sh'
+            }
+        }
     }
+
     post {
         always {
             //archive "target/**/*"
-            echo 'server: ${params.server}'
-            echo 'userEnv: ${params.userEnv}'
             archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             junit 'target/surefire-reports/*.xml'
         }
