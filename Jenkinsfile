@@ -37,7 +37,7 @@ pipeline {
         }
         stage('Test Firefox on Unix') {
           steps {
-            echo 'Testing Firefox on linux'
+            echo 'Testing Firefox on linuxx'
           }
         }
       }
