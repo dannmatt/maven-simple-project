@@ -8,14 +8,8 @@ pipeline {
     }
     stage('Build') {
       steps {
-        script {
-          if (isUnix()) {
-            sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
-          } else {
-            bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
-          }
-        }
-        
+        tool 'mvn3.5.2'
+        sh 'mvn -Dmaven.test.failure.ignore clean package'
       }
     }
     stage('Browser tests') {
