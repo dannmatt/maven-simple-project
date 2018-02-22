@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  environment {
-      mvnHome = tool 'mvn3.5.2'
-  }
   stages {
     stage('Preparation') {
       steps {
@@ -38,6 +35,11 @@ pipeline {
             echo 'Testing Firefox'
           }
         }
+        stage('Test Firefox on Unix') {
+          steps {
+            echo 'Testing Firefox on linux'
+          }
+        }
       }
     }
     stage('Deliver for staging') {
@@ -56,6 +58,9 @@ pipeline {
         input 'Finished using the web site? (Click "Proceed" to continue)'
       }
     }
+  }
+  environment {
+    mvnHome = 'mvn3.5.2'
   }
   post {
     always {
