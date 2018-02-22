@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+      mvnHome = tool 'mvn3.5.2'
+  }
   stages {
     stage('Preparation') {
       steps {
@@ -53,9 +56,6 @@ pipeline {
         input 'Finished using the web site? (Click "Proceed" to continue)'
       }
     }
-  }
-  environment {
-    mvnHome = 'mvn3.5.2'
   }
   post {
     always {
