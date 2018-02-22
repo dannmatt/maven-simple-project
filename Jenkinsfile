@@ -53,8 +53,8 @@ pipeline {
       }
     }
   }
-  environment {
-    mvnHome = 'mvn3.5.2'
+  tools {
+      maven 'mvn3.5.2'
   }
   post {
     always {
