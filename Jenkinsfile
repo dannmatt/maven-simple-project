@@ -4,6 +4,7 @@ pipeline {
     stage('Preparation') {
       steps {
         git 'https://github.com/dannmatt/maven-simple-project.git'
+        echo 'ciao'
       }
     }
     stage('Build') {
@@ -42,6 +43,7 @@ pipeline {
       }
       steps {
         input 'Finished using the web site? (Click "Proceed" to continue)'
+        echo 'nuovo messaggio'
       }
     }
     stage('Deploy for production') {
@@ -54,7 +56,7 @@ pipeline {
     }
   }
   tools {
-      maven 'mvn3.5.2'
+    maven 'mvn3.5.2'
   }
   post {
     always {
